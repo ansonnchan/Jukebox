@@ -6,18 +6,12 @@
 
 There are no accounts and no durable chat history. Your conversation stays in the browser for the current visit and disappears when the page is refreshed or closed.
 
-## Preview 
+## Preview
+
 <p align="center">
-  <img src="assets/vent.ai_pic1.png" alt="pear-program homepage" width="800">
+  <img src="assets/hear-me-out-demo.gif" alt="hear me out interactive product demo" width="960">
   <br>
-hear me out home page</em>
-</p>
-<br>
-<p align="center">
-  <img src="assets/vent.ai_pic2.png" alt="stuff" width="800">
-  <br>
-tiger mom energy 
-</em>
+  <em>Choose a personality and see the conversation unfold.</em>
 </p>
 
 ## What it does
