@@ -1,15 +1,15 @@
-# hear me out
+# Jukebox
 
-> Same thought. Different lens.
+> Jukebox — same thought. Different lens.
 
-**hear me out** is a private, session-only space to put a thought into words and see it reflected through a voice that fits the moment. Choose a personality yourself, or let the app suggest a lens for your first message.
+**Jukebox** is a private, session-only space to put a thought into words and see it reflected through a voice that fits the moment. Choose a personality yourself, or let the app suggest a lens for your first message.
 
 There are no accounts and no durable chat history. Your conversation stays in the browser for the current visit and disappears when the page is refreshed or closed.
 
 ## Preview
 
 <p align="center">
-  <img src="assets/hear-me-out-demo.gif" alt="hear me out interactive product demo" width="960">
+  <img src="assets/jukebox-demo.gif" alt="Jukebox interactive product demo" width="960">
   <br>
   <em>Choose a personality and see the conversation unfold.</em>
 </p>
@@ -82,6 +82,6 @@ npm run build      # create a production build
 
 ## Privacy and safety
 
-hear me out is designed for reflection, not treatment or crisis care. It does not diagnose, provide clinical advice, or replace trusted people, professional care, or emergency services.
+Jukebox is designed for reflection, not treatment or crisis care. It does not diagnose, provide clinical advice, or replace trusted people, professional care, or emergency services.
 
 The active chat transcript lives only in browser memory. When optional worker mode is enabled, Redis stores queued requests and streamed events temporarily with a rolling 15-minute TTL; it is not a durable conversation archive.

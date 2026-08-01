@@ -13,7 +13,7 @@ import { recordClientMetric } from '@/lib/client-metrics'
 import { personalityLoadingScenes, personalityPortraits, personalityScenes } from '@/lib/personality-assets'
 import { personalities, personalityList, type PersonalityKey } from '@/lib/personalities'
 import { useVentStore } from '@/store/vent-store'
-import heroArtwork from '@/assets/hear-me-out-hero-v2.png'
+import heroArtwork from '@/assets/jukebox-hero-v2.png'
 import matchingCharactersLeft from '@/assets/matching-characters-left.png'
 import matchingCharactersRight from '@/assets/matching-characters-right.png'
 

@@ -5,7 +5,7 @@ export function Disclaimer({ compact = false }: { compact?: boolean }) {
       style={{ color: 'var(--color-muted)', padding: compact ? '.45rem 0 .5rem' : '2rem 0 1rem' }}
     >
       <p>
-        hear me out is not a replacement for real human connection.
+        Jukebox is not a replacement for real human connection.
         <br />
         If you are struggling, please consider reaching out to someone you trust.
       </p>

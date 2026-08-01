@@ -20,9 +20,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className={cn('min-h-screen', isVent && 'flex h-svh min-h-[700px] flex-col overflow-hidden')}>
         {!isLanding ? <header className="sticky top-0 z-50 shrink-0 border-b border-[#b99e82]/15 bg-[#fffaf0]/90 backdrop-blur-xl">
           <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-5 py-3 sm:px-8 lg:px-10">
-            <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="hear me out home">
+            <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="Jukebox home">
               <Image src="/favicon.ico" alt="" width={26} height={30} unoptimized className="h-7 w-6 object-contain" />
-              <span className="font-hand block text-[20px] font-bold leading-none text-[#493a32]">hear me out</span>
+              <span className="font-hand block text-[20px] font-bold leading-none text-[#493a32]">Jukebox</span>
             </Link>
 
             <SiteNavigation />

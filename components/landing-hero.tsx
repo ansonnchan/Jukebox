@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Cat, LockKeyhole } from 'lucide-react'
-import heroArtwork from '@/assets/hear-me-out-hero-v2.png'
+import heroArtwork from '@/assets/jukebox-hero-v2.png'
 import { SiteNavigation } from '@/components/site-navigation'
 
 export function LandingHero() {
@@ -19,9 +19,9 @@ export function LandingHero() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_56%_48%,rgba(54,33,25,.34)_0%,rgba(54,33,25,.18)_31%,transparent_58%)]" />
 
       <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-6 py-5 text-[#fffaf0] sm:px-9 sm:py-7">
-        <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="hear me out home">
+        <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="Jukebox home">
           <Image src="/favicon.ico" alt="" width={32} height={37} unoptimized className="h-9 w-8 object-contain drop-shadow-[0_2px_8px_rgba(25,16,12,.28)]" />
-          <span className="font-hand block text-2xl font-bold leading-none [text-shadow:0_2px_12px_rgba(25,16,12,.38)]">hear me out</span>
+          <span className="font-hand block text-2xl font-bold leading-none [text-shadow:0_2px_12px_rgba(25,16,12,.38)]">Jukebox</span>
         </Link>
 
         <SiteNavigation overImage />
