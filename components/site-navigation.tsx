@@ -15,8 +15,10 @@ export function SiteNavigation({ overImage = false }: { overImage?: boolean }) {
 
   return (
     <nav className={cn(
-      'flex items-center gap-1 rounded-full p-1 text-xs font-medium sm:text-sm',
-      overImage ? 'bg-[#3c2a23]/18 backdrop-blur-[3px]' : 'border border-[#b99e82]/15 bg-white/45',
+      'flex items-center gap-1.5 text-xs font-semibold tracking-[-0.01em] sm:text-sm',
+      overImage
+        ? 'rounded-[14px] border border-white/10 bg-[#160e0b]/34 p-1.5 shadow-[0_12px_40px_rgba(0,0,0,.12)] backdrop-blur-md'
+        : 'rounded-[14px] border border-[#b99e82]/18 bg-white/52 p-1 shadow-sm',
     )}>
       {navItems.map((item) => {
         const isActive = pathname === item.href
@@ -27,11 +29,13 @@ export function SiteNavigation({ overImage = false }: { overImage?: boolean }) {
             href={item.href}
             aria-current={isActive ? 'page' : undefined}
             className={cn(
-              'rounded-full px-3 py-1.5 transition sm:px-4',
+              'rounded-[10px] px-3 py-1.5 transition sm:px-4 sm:py-2',
               overImage
-                ? 'text-white/80 hover:bg-white/12 hover:text-white'
-                : 'text-[#7d6a5e] hover:bg-white/75 hover:text-[#493a32]',
-              isActive && 'bg-[#9e88bf] text-white shadow-[0_3px_10px_rgba(74,51,40,.18)] hover:bg-[#8f78b2] hover:text-white',
+                ? 'text-[#fff5e8]/76 hover:bg-white/10 hover:text-white'
+                : 'text-[#756157] hover:bg-white/80 hover:text-[#3d2c26]',
+              isActive && (overImage
+                ? 'bg-[#e8a36a] text-[#2c170f] shadow-[0_5px_18px_rgba(26,12,7,.3)] hover:bg-[#f0b178] hover:text-[#2c170f]'
+                : 'bg-[#49352d] text-[#fff9ef] shadow-[0_5px_15px_rgba(73,53,45,.16)] hover:bg-[#5b4036] hover:text-white'),
             )}
           >
             {item.label}

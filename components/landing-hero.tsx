@@ -1,62 +1,66 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Cat, LockKeyhole } from 'lucide-react'
-import heroArtwork from '@/assets/jukebox-hero-v2.png'
+import { ArrowRight, Headphones, LockKeyhole } from 'lucide-react'
+import heroArtwork from '@/assets/jukebox-hero-night.png'
+import jukeboxIcon from '@/assets/jukebox.png'
 import { SiteNavigation } from '@/components/site-navigation'
 
 export function LandingHero() {
   return (
-    <section className="relative isolate h-svh min-h-[640px] w-full overflow-hidden">
+    <section className="relative isolate h-svh min-h-[680px] w-full overflow-hidden bg-[#170e0b]">
       <Image
         src={heroArtwork}
-        alt="A cozy illustrated study opening onto a cherry-blossom town and distant mountains"
+        alt="A cozy late-night listening room with a jukebox, vinyl records, and a city view at dusk"
         fill
         priority
-        className="object-cover object-center"
+        placeholder="blur"
+        className="object-cover object-[42%_center] sm:object-center"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(27,19,16,.16)_0%,rgba(32,22,18,.03)_44%,rgba(44,28,23,.14)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_56%_48%,rgba(54,33,25,.34)_0%,rgba(54,33,25,.18)_31%,transparent_58%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,9,7,.34)_0%,rgba(20,10,8,.12)_38%,rgba(15,8,7,.38)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_62%_48%,rgba(25,12,10,.1)_0%,rgba(25,12,10,.3)_42%,transparent_70%),linear-gradient(180deg,rgba(10,6,5,.28)_0%,transparent_26%,transparent_62%,rgba(10,6,5,.46)_100%)]" />
 
-      <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-6 py-5 text-[#fffaf0] sm:px-9 sm:py-7">
-        <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="Jukebox home">
-          <Image src="/favicon.ico" alt="" width={32} height={37} unoptimized className="h-9 w-8 object-contain drop-shadow-[0_2px_8px_rgba(25,16,12,.28)]" />
-          <span className="font-hand block text-2xl font-bold leading-none [text-shadow:0_2px_12px_rgba(25,16,12,.38)]">Jukebox</span>
+      <header className="absolute inset-x-0 top-0 z-20 mx-auto flex w-full max-w-[1680px] items-center justify-between px-5 py-5 text-[#fffaf0] sm:px-8 sm:py-7 lg:px-12">
+        <Link href="/" className="group inline-flex items-center gap-3" aria-label="Jukebox home">
+          <Image src={jukeboxIcon} alt="" className="h-11 w-11 object-contain drop-shadow-[0_8px_18px_rgba(8,3,2,.45)] transition-transform group-hover:-rotate-3 group-hover:scale-105" sizes="44px" />
+          <span className="font-display hidden text-2xl font-bold leading-none tracking-[-0.045em] [text-shadow:0_2px_14px_rgba(12,6,4,.55)] sm:block">Jukebox</span>
         </Link>
 
         <SiteNavigation overImage />
       </header>
 
-      <div aria-hidden="true" className="pointer-events-none absolute left-[10.2%] top-[38%] hidden w-[21%] -rotate-1 select-none text-center text-[#6c584a] lg:block">
-        <p className="font-cjk text-[clamp(1.15rem,1.8vw,2rem)] leading-[1.55]">心に浮かんだことを、<br />言葉にしてみよう。</p>
-        <Cat className="mx-auto mt-2 opacity-55" size={23} strokeWidth={1.25} />
-      </div>
+      <div className="absolute inset-x-0 top-1/2 z-10 mx-auto w-full max-w-[1680px] -translate-y-[43%] px-5 text-[#fffaf1] sm:px-8 lg:px-12">
+        <div className="max-w-[680px] sm:ml-[36%] lg:ml-[43%]">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-[10px] border border-[#f2c292]/24 bg-[#21130e]/45 px-3 py-2 text-[10px] font-bold uppercase tracking-[.16em] text-[#f4c998] shadow-[0_8px_24px_rgba(10,5,3,.15)] backdrop-blur-md sm:text-[11px]">
+            <Headphones size={14} strokeWidth={1.7} /> A listening room for your thoughts
+          </div>
+          <h1 className="font-display text-[clamp(2.75rem,13vw,4rem)] font-semibold leading-[.88] tracking-[-0.065em] text-[#fff5e7] [text-shadow:0_4px_24px_rgba(18,8,5,.68)] sm:text-[clamp(3.2rem,6.3vw,6.4rem)]">
+            Same thought.<br />Different lens.
+          </h1>
+          <p className="mt-6 max-w-[470px] text-sm font-medium leading-7 text-[#fff4e7]/82 [text-shadow:0_2px_12px_rgba(22,10,7,.85)] sm:text-[15px]">
+            Share what&apos;s on your mind and hear it reflected through different perspectives.
+          </p>
 
-      <div className="absolute left-[7%] top-1/2 z-10 w-[86%] max-w-[660px] -translate-y-[38%] text-[#fffaf1] sm:left-[41%] sm:w-[52%] sm:-translate-y-[46%] lg:left-[40%]">
-        <h1 className="font-hand text-[clamp(2.8rem,4.8vw,4.9rem)] font-normal leading-[1.03] tracking-[-0.035em] text-[#fff5e6] [text-shadow:0_3px_18px_rgba(36,21,16,.65)]">
-          Same thought.<br />Different lens.
-        </h1>
-        <p className="mt-5 max-w-[360px] text-[13px] font-medium leading-6 text-[#fff7eb]/90 [text-shadow:0_2px_10px_rgba(35,21,16,.72)] sm:text-sm">
-          Share what&apos;s on your mind and hear it reflected through different perspectives.
-        </p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Link href="/vent" className="group inline-flex h-12 items-center gap-2.5 rounded-[13px] border border-[#f4b67d]/35 bg-[#d98252] px-5 text-sm font-bold text-[#28140d] shadow-[0_12px_32px_rgba(15,6,3,.3)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#eda06a] hover:shadow-[0_16px_38px_rgba(15,6,3,.38)]">
+              Start reflecting <ArrowRight className="transition-transform group-hover:translate-x-0.5" size={16} />
+            </Link>
+            <Link href="/personalities" className="inline-flex h-12 items-center rounded-[13px] border border-[#ffe6ce]/24 bg-[#170d09]/38 px-5 text-sm font-semibold text-[#fff4e8]/90 shadow-[0_10px_28px_rgba(12,5,3,.16)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-[#ffe6ce]/42 hover:bg-[#26150f]/55 hover:text-white">
+              Meet the personalities
+            </Link>
+          </div>
 
-        <div className="mt-7 flex flex-wrap items-center gap-3">
-          <Link href="/vent" className="inline-flex h-11 items-center gap-2 rounded-full bg-[#9e88bf] px-5 text-sm font-semibold text-white shadow-[0_9px_24px_rgba(54,35,69,.28)] transition hover:-translate-y-0.5 hover:bg-[#8f78b2]">
-            Start reflecting <ArrowRight size={15} />
-          </Link>
-          <Link href="/personalities" className="inline-flex h-11 items-center rounded-full border border-white/30 bg-[#4a3328]/16 px-5 text-sm font-medium text-white/88 backdrop-blur-[4px] transition hover:bg-white/15">
-            Meet the personalities
-          </Link>
+          <p className="mt-5 inline-flex items-center gap-2 text-[11px] font-medium leading-5 text-white/60 [text-shadow:0_1px_8px_rgba(18,8,5,.68)]">
+            <LockKeyhole size={12} /> No sign-up. No history. Everything stays with you.
+          </p>
         </div>
-
-        <p className="mt-4 inline-flex items-center gap-2 text-[11px] leading-5 text-white/68 [text-shadow:0_1px_6px_rgba(35,21,16,.5)]">
-          <LockKeyhole size={12} /> No sign-up. No history. Everything stays with you.
-        </p>
       </div>
 
-      <span className="absolute right-[29%] top-[18%] h-2.5 w-2.5 rotate-45 rounded-[3px] bg-[#efb5ae]/75" />
-      <span className="absolute right-[22%] top-[33%] h-2 w-2 rotate-12 rounded-full bg-[#f4d2b8]/80" />
-      <span className="absolute bottom-[18%] left-[48%] h-2.5 w-2 rotate-45 rounded-[3px] bg-[#edaeaa]/70" />
+      <div aria-hidden="true" className="absolute bottom-5 left-5 z-10 hidden items-end gap-1 rounded-[10px] border border-white/10 bg-[#140b08]/34 px-3 py-2 backdrop-blur-sm sm:flex">
+        {[10, 17, 13, 21, 8].map((height, index) => (
+          <span key={index} className="w-1 rounded-full bg-[#e8a36a]/70" style={{ height }} />
+        ))}
+      </div>
     </section>
   )
 }

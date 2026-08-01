@@ -12,8 +12,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        body: ['var(--font-body)', 'DM Sans', 'system-ui', 'sans-serif'],
-        display: ['var(--font-display)', 'Fraunces', 'Georgia', 'serif'],
+        body: ['var(--font-body)', 'Manrope', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'Arial Rounded MT Bold', 'system-ui', 'sans-serif'],
         cjk: ['PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', 'sans-serif'],
       },
       colors: {
