@@ -5,8 +5,9 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/personalities', label: 'Personalities' },
+  // A chat lives downstream of Home, so it keeps the Home tab lit.
+  { href: '/home', label: 'Home', matches: (pathname: string) => pathname === '/home' || pathname.startsWith('/chat') },
+  { href: '/personalities', label: 'Personalities', matches: (pathname: string) => pathname === '/personalities' },
 ]
 
 export function SiteNavigation() {
@@ -15,7 +16,7 @@ export function SiteNavigation() {
   return (
     <nav className="flex items-center gap-1.5 rounded-[14px] border border-[#b99e82]/18 bg-white/52 p-1 text-xs font-semibold tracking-[-0.01em] shadow-sm sm:text-sm">
       {navItems.map((item) => {
-        const isActive = pathname === item.href
+        const isActive = item.matches(pathname)
 
         return (
           <Link

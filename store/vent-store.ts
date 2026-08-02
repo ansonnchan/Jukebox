@@ -8,6 +8,16 @@ type ResponseMap = Partial<Record<PersonalityKey, string>>
 
 export type VentSessionMessage = ConversationMessage
 
+/**
+ * A vent handed off across a route change, so /chat/[personality] can send it once the
+ * transition finishes. Used when the persona changes mid-flow: accepting a suggestion on
+ * /home, or switching to a gentler lens from a chat.
+ */
+export interface PendingSubmission {
+  text: string
+  acceptedSuggestedPersona: PersonalityKey | null
+}
+
 interface VentState {
   currentVentText: string
   currentVent: string
@@ -19,6 +29,7 @@ interface VentState {
   compressedContext: CompressedContext | null
   safetyNote: string | null
   nextMessageIndex: number
+  pendingSubmission: PendingSubmission | null
   setCurrentVentText: (text: string) => void
   setCurrentVent: (text: string) => void
   setActivePersonality: (personality: PersonalityKey) => void
@@ -28,6 +39,7 @@ interface VentState {
   addSessionMessage: (message: Omit<VentSessionMessage, 'index'>) => void
   applyCompressedContext: (context: CompressedContext) => void
   setSafetyNote: (note: string | null) => void
+  setPendingSubmission: (submission: PendingSubmission | null) => void
   resetSession: () => void
 }
 
@@ -42,6 +54,7 @@ export const useVentStore = create<VentState>((set) => ({
   compressedContext: null,
   safetyNote: null,
   nextMessageIndex: 0,
+  pendingSubmission: null,
   setCurrentVentText: (currentVentText) => set({ currentVentText }),
   setCurrentVent: (currentVent) => set({ currentVent }),
   setActivePersonality: (activePersonality) => set({ activePersonality }),
@@ -80,6 +93,7 @@ export const useVentStore = create<VentState>((set) => ({
       ),
     })),
   setSafetyNote: (safetyNote) => set({ safetyNote }),
+  setPendingSubmission: (pendingSubmission) => set({ pendingSubmission }),
   resetSession: () =>
     set({
       currentVentText: '',
@@ -90,5 +104,6 @@ export const useVentStore = create<VentState>((set) => ({
       compressedContext: null,
       safetyNote: null,
       nextMessageIndex: 0,
+      pendingSubmission: null,
     }),
 }))

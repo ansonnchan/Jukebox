@@ -110,14 +110,33 @@ Important design note: Auntie Zhang must never feel like a racial stereotype or 
 export const personalityList = Object.values(personalities)
 export const defaultPersonality: PersonalityKey = 'cotton'
 
-const legacyPersonalityAliases: Partial<Record<string, PersonalityKey>> = {
-  ming: 'venerable-ming',
+export const personalitySlugs: Record<PersonalityKey, string> = {
+  cotton: 'cotton',
+  aristotle: 'aristotle',
+  'venerable-ming': 'ming',
+  angel: 'angel',
+  'auntie-zhang': 'zhang',
+}
+
+export const personalitySlugList = Object.values(personalitySlugs)
+
+const personalityKeysBySlug: Partial<Record<string, PersonalityKey>> = Object.fromEntries(
+  Object.entries(personalitySlugs).map(([key, slug]) => [slug, key as PersonalityKey]),
+)
+
+export function personalityChatPath(key: PersonalityKey) {
+  return `/chat/${personalitySlugs[key]}`
+}
+
+export function personalityKeyFromSlug(value: unknown): PersonalityKey | null {
+  if (typeof value !== 'string') return null
+  return personalityKeysBySlug[value] ?? null
 }
 
 export function normalizePersonalityKey(value: unknown): PersonalityKey | null {
   if (typeof value !== 'string') return null
   if (value in personalities) return value as PersonalityKey
-  return legacyPersonalityAliases[value] ?? null
+  return personalityKeyFromSlug(value)
 }
 
 export function isPersonalityKey(value: unknown): value is PersonalityKey {
