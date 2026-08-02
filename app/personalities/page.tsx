@@ -97,7 +97,7 @@ export default function PersonalitiesPage() {
                     <p className="mt-3 text-xs leading-5 text-[#8a776a]">{profile.promise}</p>
                   </div>
 
-                  <Link href={`/vent?personality=${personality.key}`} className="mt-7 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-[#493a32] px-5 text-sm font-semibold text-[#fff9ef] shadow-[0_8px_20px_rgba(73,58,50,.16)] transition hover:-translate-y-0.5 hover:bg-[#5b463c]">
+                  <Link href={`/?personality=${personality.key}`} className="mt-7 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-[#493a32] px-5 text-sm font-semibold text-[#fff9ef] shadow-[0_8px_20px_rgba(73,58,50,.16)] transition hover:-translate-y-0.5 hover:bg-[#5b463c]">
                     Talk with {personality.name} <ArrowRight size={15} />
                   </Link>
                 </div>
