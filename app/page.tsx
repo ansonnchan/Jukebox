@@ -1,20 +1,17 @@
-import { VentPageClient } from '@/components/vent-page-client'
-import { normalizePersonalityKey, type PersonalityKey } from '@/lib/personalities'
+import { redirect } from 'next/navigation'
+import { normalizePersonalityKey, personalityChatPath } from '@/lib/personalities'
 
-interface HomePageProps {
+interface RootPageProps {
   searchParams: Promise<{
     personality?: string | string[]
   }>
 }
 
-function parsePersonalityParam(value: string | string[] | undefined): PersonalityKey | null {
-  const firstValue = Array.isArray(value) ? value[0] : value
-  return normalizePersonalityKey(firstValue)
-}
-
-export default async function HomePage({ searchParams }: HomePageProps) {
+/** `/` is an entry point only: it forwards to /home, or straight into a chat for older links. */
+export default async function RootPage({ searchParams }: RootPageProps) {
   const params = await searchParams
-  const initialPersonality = parsePersonalityParam(params.personality)
+  const value = Array.isArray(params.personality) ? params.personality[0] : params.personality
+  const personality = normalizePersonalityKey(value)
 
-  return <VentPageClient key={initialPersonality ?? 'none'} initialPersonality={initialPersonality} />
+  redirect(personality ? personalityChatPath(personality) : '/home')
 }

@@ -10,16 +10,20 @@ interface PersonaSuggestionInputProps {
   value: string
   suggestion: PersonaRouteResult | null
   error?: string | null
+  /** Shortest vent the router can read a lens from. */
+  minChars: number
   isChecking?: boolean
   onChange: (value: string) => void
   onRequestSuggestion: () => void
   onUseSuggested: () => void
   className?: string
-  variant?: 'panel' | 'scene'
 }
 
-export function PersonaSuggestionInput({ value, suggestion, error, isChecking = false, onChange, onRequestSuggestion, onUseSuggested, className, variant = 'panel' }: PersonaSuggestionInputProps) {
-  const isScene = variant === 'scene'
+export function PersonaSuggestionInput({ value, suggestion, error, minChars, isChecking = false, onChange, onRequestSuggestion, onUseSuggested, className }: PersonaSuggestionInputProps) {
+  const length = value.trim().length
+  const meetsMinimum = length >= minChars
+
+
   function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
     if (event.key !== 'Enter' || event.shiftKey) return
     event.preventDefault()
@@ -27,32 +31,31 @@ export function PersonaSuggestionInput({ value, suggestion, error, isChecking = 
   }
 
   return (
-    <div className={cn(
-      'paper-shadow relative mx-auto flex h-full min-h-0 w-full flex-col overflow-hidden rounded-[18px] border p-4 text-left text-[#fff8ec] sm:p-5',
-      isScene ? 'border-transparent bg-transparent p-0 shadow-none' : 'border-[#c9b49c]/30 bg-[#33271f]',
-      className,
-    )}>
-      {!isScene ? <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(191,145,100,.18),transparent_35%),linear-gradient(135deg,rgba(80,56,40,.25),transparent)]" /> : null}
-      <div className={cn('relative mb-3 flex items-start gap-3', isScene && 'mx-auto mb-5 max-w-xl flex-col items-center text-center')}>
-        <div>
-          <h2 className={cn('font-hand text-2xl font-bold sm:text-[26px]', isScene && 'text-3xl text-[#fff3df] [text-shadow:0_2px_12px_rgba(26,15,10,.5)] sm:text-4xl')}>Not sure who to talk to?</h2>
-          <p className={cn('mt-0.5 text-xs leading-5 text-white/65 sm:text-sm', isScene && 'text-[#fff1df]/80')}>Write a little about how you feel. We&apos;ll suggest a perspective that might help.</p>
-        </div>
-      </div>
+    <div className={cn('relative flex w-full flex-col text-left', className)}>
+      {/* A sticker-style outline sits behind the box so it reads as pasted onto the page. */}
+      <span aria-hidden="true" className="pointer-events-none absolute -inset-2 -z-10 rotate-[-0.5deg] rounded-[22px] border-2 border-dashed border-[#d8bf9a]/45" />
 
       <textarea
         value={value}
         onChange={(event) => onChange(event.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="For example: I feel behind even though I’m trying my best..."
-        className={cn('relative w-full shrink-0 resize-none rounded-[10px] border border-[#ddc2a1]/65 bg-[#fff7e8] px-5 py-3 text-sm leading-6 text-[#55483e] outline-none placeholder:font-hand placeholder:text-[#9e8a7a] focus:border-[#9e88bf] focus:shadow-[0_8px_24px_rgba(0,0,0,.15)]', isScene ? 'h-[clamp(170px,25vh,250px)] rounded-[15px] border-[3px] border-[#e5bd8c]/85 bg-[#fff8e9] px-6 py-4 shadow-[0_10px_28px_rgba(26,15,10,.27)]' : 'h-[clamp(92px,14vh,132px)]')}
+        className="relative h-[clamp(190px,29vh,330px)] w-full shrink-0 resize-none rounded-[18px] border-[3px] border-[#e5bd8c]/85 bg-[#fff8e9] px-6 py-5 text-sm leading-7 text-[#55483e] shadow-[0_8px_22px_rgba(120,84,52,.1)] outline-none transition placeholder:font-hand placeholder:text-[#a28d7a] focus:border-[#c9a06a] focus:shadow-[0_12px_30px_rgba(120,84,52,.16)] sm:text-[15px]"
       />
 
-      <div className="relative mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <div className={cn('min-h-5 text-xs text-white/48', isScene && 'text-[#fff1df]/75')}>{error ? <span className="text-[#e2b8d0]">{error}</span> : <span>Your words stay in this session.</span>}</div>
+      <p className="font-hand relative mt-2.5 text-xs text-[#9a8677] sm:text-[13px]">
+        At least {minChars} characters, so there is enough to read a lens from.
+      </p>
+
+      <div className="relative mt-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-h-5 text-xs text-[#8a7768]">
+          {error ? <span className="text-[#a15f59]">{error}</span> : <span>Your words stay in this session.</span>}
+        </div>
         <div className="flex items-center justify-between gap-3 sm:justify-end">
-          <span className={cn('text-xs text-white/45', isScene && 'text-[#fff1df]/65')}>{value.length.toLocaleString()}</span>
-          <Button type="button" size="md" variant="primary" className="bg-[#9e88bf] text-white shadow-[0_7px_18px_rgba(34,19,42,.26)] hover:bg-[#8b75aa]" onClick={onRequestSuggestion} disabled={isChecking}>
+          <span className={cn('text-xs tabular-nums', meetsMinimum ? 'text-[#7f9670]' : 'text-[#9c8a7c]')}>
+            {length.toLocaleString()} / {minChars}
+          </span>
+          <Button type="button" size="md" variant="primary" className="bg-[#9e88bf] text-white shadow-[0_7px_18px_rgba(34,19,42,.2)] hover:bg-[#8b75aa]" onClick={onRequestSuggestion} disabled={isChecking}>
             {isChecking ? 'Finding a lens...' : 'Suggest a lens'}
           </Button>
         </div>

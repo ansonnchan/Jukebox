@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, MessageCircleHeart, Sparkles } from 'lucide-react'
 import { personalityPortraits, personalityScenes } from '@/lib/personality-assets'
-import { personalities, personalityList, type PersonalityKey } from '@/lib/personalities'
+import { personalities, personalityChatPath, personalityList, type PersonalityKey } from '@/lib/personalities'
 import { cn } from '@/lib/utils'
 
 const profiles: Record<PersonalityKey, { intro: string; bestFor: string[]; promise: string; sample: string }> = {
@@ -97,7 +97,7 @@ export default function PersonalitiesPage() {
                     <p className="mt-3 text-xs leading-5 text-[#8a776a]">{profile.promise}</p>
                   </div>
 
-                  <Link href={`/?personality=${personality.key}`} className="mt-7 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-[#493a32] px-5 text-sm font-semibold text-[#fff9ef] shadow-[0_8px_20px_rgba(73,58,50,.16)] transition hover:-translate-y-0.5 hover:bg-[#5b463c]">
+                  <Link href={personalityChatPath(personality.key)} className="mt-7 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-[#493a32] px-5 text-sm font-semibold text-[#fff9ef] shadow-[0_8px_20px_rgba(73,58,50,.16)] transition hover:-translate-y-0.5 hover:bg-[#5b463c]">
                     Talk with {personality.name} <ArrowRight size={15} />
                   </Link>
                 </div>
