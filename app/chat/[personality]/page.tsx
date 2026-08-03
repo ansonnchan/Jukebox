@@ -1,9 +1,7 @@
-import type { Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
 import { ChatPageClient } from '@/components/chat-page-client'
 import {
   normalizePersonalityKey,
-  personalities,
   personalityChatPath,
   personalityKeyFromSlug,
   personalitySlugList,
@@ -17,18 +15,6 @@ interface ChatPageProps {
 
 export function generateStaticParams() {
   return personalitySlugList.map((personality) => ({ personality }))
-}
-
-export async function generateMetadata({ params }: ChatPageProps): Promise<Metadata> {
-  const { personality: slug } = await params
-  const key = personalityKeyFromSlug(slug)
-
-  if (!key) return { title: 'Jukebox' }
-
-  return {
-    title: `${personalities[key].name} — Jukebox`,
-    description: personalities[key].tagline,
-  }
 }
 
 export default async function ChatPage({ params }: ChatPageProps) {

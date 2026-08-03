@@ -5,8 +5,12 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 const navItems = [
-  // A chat lives downstream of Home, so it keeps the Home tab lit.
-  { href: '/home', label: 'Home', matches: (pathname: string) => pathname === '/home' || pathname.startsWith('/chat') },
+  // The router and chats live downstream of Home, so they keep the Home tab lit.
+  {
+    href: '/home',
+    label: 'Home',
+    matches: (pathname: string) => pathname === '/home' || pathname === '/router' || pathname.startsWith('/chat'),
+  },
   { href: '/personalities', label: 'Personalities', matches: (pathname: string) => pathname === '/personalities' },
 ]
 

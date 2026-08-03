@@ -12,8 +12,8 @@ import jukeboxIcon from '@/assets/jukebox.png'
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  // Home and the chat routes are fixed-height surfaces that manage their own scrolling.
-  const isVent = pathname === '/home' || pathname.startsWith('/chat')
+  // Home, the router, and the chat routes are fixed-height surfaces that manage their own scrolling.
+  const isVent = pathname === '/home' || pathname === '/router' || pathname.startsWith('/chat')
 
   return (
     <>
